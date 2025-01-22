@@ -51,7 +51,10 @@ class WebCaching {
 
   static Future<void> saveFile(String name, XFile data) async {
     var box = await _box;
-    if (box.containsKey(name)) return;
+    if (box.containsKey(name)) {
+      // log('Already exists');
+      return;
+    }
     var bytes = await data.readAsBytes();
     late final String path;
     if (kIsWeb || kIsWasm) {
